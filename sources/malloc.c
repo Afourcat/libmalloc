@@ -14,15 +14,13 @@ void *alloc(size_t size, struct data **free, struct data **used)
 	if (new) {
 		write(1, "Not pushing break.\n", 20);
 		new->size = size;
-		return (void *) (add_elem(used, new) + sizeof(struct data));
+		return (void *) (add_elem(used, new) + 1);
 	} else {
 		write(1, "Push break.\n", 12);
 		new = sbrk(0);
-		if (sbrk(size + sizeof(struct data)) == (void *) -1 ||
-		new == (void *) -1)
-			write(1, "ERRORERRORERRORERRORERRORERROR\n", 31);
+		sbrk(size + sizeof(struct data));
 		new->size = size;
-		return (void *) (add_elem(used, new) + sizeof(struct data));
+		return (void *) (add_elem(used, new) + 1);
 	}
 	return 0;
 }

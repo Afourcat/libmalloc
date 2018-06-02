@@ -31,14 +31,12 @@ struct data *add_elem(struct data **head, struct data *elem)
 		write(1, "Adding on null\n", 15);
 		*head = elem;
 		elem->next = NULL;
-		putnbr(*head);
 		write(1, "\n", 1);
 		return *head;
 	}
 	write(1, "Adding normaly\n", 15);
 	elem->next = *head;
 	*head = elem;
-	putnbr(*head);
 	write(1, "\n", 1);
 	return *head;
 }

@@ -11,9 +11,11 @@ void *calloc(size_t nmemb, size_t size)
 {
 	write(1, "CALLOC\n", 7);
 	void *ptr = malloc(nmemb * size);
+	size_t i = 1;
 
 	if (!ptr)
 		return NULL;
-	memset(ptr, 0, nmemb * size);
+	while (++i < nmemb)
+		
 	return ptr;
 }

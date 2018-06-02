@@ -16,8 +16,17 @@ void free(void *ptr)
 	struct data *tmp = used;
 	bool finded = false;
 
+	if (!ptr) {
+		write(1, "Null free\n", 10);
+		return;
+	}
 	while (tmp) {
-		if (tmp + sizeof(struct data) == ptr) {
+		write(1, "\ntmp : ", 7);
+		putnbr(tmp + 1);
+		write(1, "\nptr : ", 7);
+		putnbr(ptr);
+		write(1, "\n", 1);
+		if (tmp + 1 == ptr) {
 			write(1, "Valid free !\n", 13);
 			*prev = tmp->next;
 			add_elem(&free, tmp);

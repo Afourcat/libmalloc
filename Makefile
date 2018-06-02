@@ -57,7 +57,7 @@ all:			$(NAME)
 
 $(NAME):		$(REAL)/$(NAME)
 			$(V)cp $(REAL)/$(NAME) $(ROOT)
-			$(V)$(CC) -o ./a.out $(SRC_DIR)/main.c -g
+			$(V)$(CC) -o ./test $(SRC_DIR)/main.c -g
 			$(V)printf "$(GREEN)Dup $(NAME) into root directory.$(WHITE)\n"
 
 debug:			fclean echo_d $(NAME)
