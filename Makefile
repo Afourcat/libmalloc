@@ -78,6 +78,7 @@ clean:
 
 fclean:			clean
 			$(V)rm -f $(REAL)/$(NAME)
+			$(V)rm -f test
 			$(V)rm -f $(ROOT)/$(NAME)
 			$(V)printf "$(ORANGE)Removing binary file.$(WHITE)\n"
 
