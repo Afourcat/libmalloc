@@ -16,7 +16,9 @@ NAME	=		libmalloc.so
 REAL	=		$(ROOT)/build
 
 SRC	=		$(SRC_DIR)/malloc.c	\
+			$(SRC_DIR)/calloc.c	\
 			$(SRC_DIR)/free.c	\
+			$(SRC_DIR)/realloc.c	\
 			$(SRC_DIR)/utils.c
 
 WARN	=		-W -Wall -Wextra
@@ -55,6 +57,7 @@ all:			$(NAME)
 
 $(NAME):		$(REAL)/$(NAME)
 			$(V)cp $(REAL)/$(NAME) $(ROOT)
+			$(V)$(CC) -o ./a.out $(SRC_DIR)/main.c -g
 			$(V)printf "$(GREEN)Dup $(NAME) into root directory.$(WHITE)\n"
 
 debug:			fclean echo_d $(NAME)

@@ -9,22 +9,27 @@
 
 void free(void *ptr)
 {
+	write(1, "FREE\n", 5);
 	struct data *free = get_free(NULL);
 	struct data *used = get_used(NULL);
+	struct data **prev = &used;
 	struct data *tmp = used;
-	struct data **prev = NULL;
+	bool finded = false;
 
-	write(1, "FREE\n", 5);
-	while (tmp != NULL) {
-		if (tmp == ptr) {
-			write(1, "FIND\n", 5);
-			(*prev)->next = tmp->next;
+	while (tmp) {
+		if (tmp + sizeof(struct data) == ptr) {
+			write(1, "Valid free !\n", 13);
+			*prev = tmp->next;
 			add_elem(&free, tmp);
+			finded = true;
+			break;
 		}
-		write(1, "NOT FIND\n", 9);
-		*prev = tmp;
+		write(1, "!\n", 2);
+		prev = &tmp->next;
 		tmp = tmp->next;
 	}
-	get_free(free);
-	get_used(used);
+	if (!finded)
+		write(1, "Invalid free !\n", 15);
+	get_free(&free);
+	get_used(&used);
 }

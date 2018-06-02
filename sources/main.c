@@ -5,15 +5,13 @@
 ** test file
 */
 
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
-int main(void)
+
+int main(int argc, char *argv[])
 {
-	char *allo = malloc(sizeof(char) * (strlen("Salut ca va ?") + 10));
-	char *test = malloc(10);
 
-	free(allo);
-	free(test);
 	return 0;
 }
