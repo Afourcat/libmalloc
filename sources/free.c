@@ -21,11 +21,6 @@ void free(void *ptr)
 		return;
 	}
 	while (tmp) {
-		write(1, "\ntmp : ", 7);
-		putnbr(tmp + 1);
-		write(1, "\nptr : ", 7);
-		putnbr(ptr);
-		write(1, "\n", 1);
 		if (tmp + 1 == ptr) {
 			write(1, "Valid free !\n", 13);
 			*prev = tmp->next;

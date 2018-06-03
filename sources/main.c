@@ -11,32 +11,21 @@
 
 int main(int argc, char *argv[])
 {
-	size_t size_1 = 100000;
-	size_t size_2 = 200000;
-	size_t size_3 = 300000;
-	size_t size_4 = 400000;
-	char *test1 = malloc(size_1);
-	char *test2 = malloc(size_2);
-	char *test3 = malloc(size_3);
-	char *test4 = malloc(size_4);
+	char *test = malloc(1);
+	char *test1 = NULL;
+	int *call = calloc(1, sizeof(int));
 
-	memset(test1, 0, size_1);
-	memset(test2, 0, size_2);
-	memset(test3, 0, size_3);
-	memset(test4, 0, size_4);
-	free(test4);
-	test4 = malloc(1000);
-	memset(test4, 0, 1000);
-	test4 = realloc(test4, 1200);
-	memset(test4, 0, 1200);
-	free(test4);
-	test4 = calloc(120, 1);
-	memset(test4, 0, 120);
-	free(test4);
-	test4 = realloc(test4, 1200);
-	test4 = realloc(test4, 1400);
-	test4 = realloc(test4, 1600);
-	memset(test4, 0, 1600);
-	free(test4);
+	for (int i = 2; i < 10000; ++i) {
+		test1 = malloc(10);
+		test = realloc(test, i);
+		memset(test1, 1, 10);
+		memset(test, 0, i);
+		memset(call, 1, (i - 1) * sizeof(int));
+		free(NULL);
+		free(call);
+		free(test1);
+		call = calloc(i, sizeof(int));
+	}
+	free(test);
 	return 0;
 }

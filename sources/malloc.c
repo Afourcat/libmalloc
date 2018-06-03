@@ -14,6 +14,7 @@ void *alloc(size_t size, struct data **free, struct data **used)
 	if (new) {
 		write(1, "Not pushing break.\n", 20);
 		new->size = size;
+		new->next = NULL;
 		return (void *) (add_elem(used, new) + 1);
 	} else {
 		write(1, "Push break.\n", 12);

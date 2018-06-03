@@ -10,9 +10,10 @@
 void *calloc(size_t nmemb, size_t size)
 {
 	write(1, "CALLOC\n", 7);
-	void *ptr = malloc(nmemb * size);
+	size_t bytes = nmemb * size;
+	void *ptr = malloc(bytes);
 
 	if (!ptr)
 		return NULL;
-	return memset(ptr, 0, size * nmemb);
+	return memset(ptr, 0, bytes);
 }
