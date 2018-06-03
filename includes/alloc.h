@@ -13,7 +13,7 @@
 #	include <stdbool.h>
 #	include <string.h>
 
-#	define ALIGN(x) (((((x) - 1) >> 4) << 4) + 8)
+#	define ALIGN(x) (((x) + (sizeof(void *) - 1)) & ~(sizeof(void *) - 1))
 
 typedef struct data data_t;
 
