@@ -28,16 +28,24 @@ struct data *get_used(struct data **set)
 struct data *add_elem(struct data **head, struct data *elem)
 {
 	if (*head == NULL) {
+#ifdef DEBUG
 		write(1, "Adding on null\n", 15);
+#endif
 		*head = elem;
 		elem->next = NULL;
+#ifdef DEBUG
 		write(1, "\n", 1);
+#endif
 		return *head;
 	}
+#ifdef DEBUG
 	write(1, "Adding normaly\n", 15);
+#endif
 	elem->next = *head;
 	*head = elem;
+#ifdef DEBUG
 	write(1, "\n", 1);
+#endif
 	return *head;
 }
 
@@ -48,14 +56,18 @@ struct data *get_free_space(struct data **head, size_t size)
 
 	while (tmp != NULL) {
 		if (tmp->size >= size) {
+#ifdef DEBUG
 			write(1, "Free space\n", 11);
+#endif
 			*prev = tmp->next;
 			return tmp;
 		}
 		prev = &tmp->next;
 		tmp = tmp->next;
 	}
+#ifdef DEBUG
 	write(1, "No free space\n", 14);
+#endif
 	return NULL;
 }
 

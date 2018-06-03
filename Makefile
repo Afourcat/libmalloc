@@ -33,7 +33,7 @@ TEST	?=		0
 
 DEB	?=      	0
 
-G	=		-g
+G	=		-g -D DEBUG
 
 V	?=		@
 

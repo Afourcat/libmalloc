@@ -12,12 +12,16 @@ void *alloc(size_t size, struct data **free, struct data **used)
 	struct data *new = get_free_space(free, size);
 
 	if (new) {
+#ifdef DEBUG
 		write(1, "Not pushing break.\n", 20);
+#endif
 		new->size = size;
 		new->next = NULL;
 		return (void *) (add_elem(used, new) + 1);
 	} else {
+#ifdef DEBUG
 		write(1, "Push break.\n", 12);
+#endif
 		new = sbrk(0);
 		sbrk(size + sizeof(struct data));
 		new->size = size;
@@ -28,7 +32,9 @@ void *alloc(size_t size, struct data **free, struct data **used)
 
 void *malloc(size_t size)
 {
+#ifdef DEBUG
 	write(1, "MALLOC\n", 7);
+#endif
 	void *ptr = sbrk(0);
 	struct data *free = get_free(NULL);
 	struct data *used = get_used(NULL);

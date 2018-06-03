@@ -9,9 +9,12 @@
 
 void *calloc(size_t nmemb, size_t size)
 {
+#ifdef DEBUG
 	write(1, "CALLOC\n", 7);
+#endif
 	size_t bytes = nmemb * size;
-	void *ptr = malloc(bytes);
+	void *ptr = NULL;
+	return malloc(bytes);
 
 	if (!ptr)
 		return NULL;
