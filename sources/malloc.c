@@ -16,7 +16,6 @@ void *alloc(size_t size, struct data **free, struct data **used)
 		write(1, "Not pushing break.\n", 20);
 #endif
 		new->size = size;
-		new->next = NULL;
 		return (void *) (add_elem(used, new) + 1);
 	} else {
 #ifdef DEBUG
@@ -34,14 +33,17 @@ void *malloc(size_t size)
 {
 #ifdef DEBUG
 	write(1, "MALLOC\n", 7);
+	putnbr(ALIGN(size));
+	write(1, "\n", 1);
 #endif
 	void *ptr = sbrk(0);
 	struct data *free = get_free(NULL);
 	struct data *used = get_used(NULL);
+	size_t size_aligned = ALIGN(size);
 
 	if (ptr == (void *) -1)
 		return NULL;
-	ptr = alloc(size, &free, &used);
+	ptr = alloc(size_aligned, &free, &used);
 	get_free(&free);
 	get_used(&used);
 	return ptr;

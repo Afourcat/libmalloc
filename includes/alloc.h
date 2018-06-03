@@ -13,6 +13,8 @@
 #	include <stdbool.h>
 #	include <string.h>
 
+#	define ALIGN(x) (((((x) - 1) >> 4) << 4) + 8)
+
 typedef struct data data_t;
 
 static const size_t SIZE = sizeof(void *);

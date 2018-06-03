@@ -40,10 +40,11 @@ void free(void *ptr)
 		prev = &tmp->next;
 		tmp = tmp->next;
 	}
-	if (!finded)
+	if (!finded) {
 #ifdef DEBUG
 		write(1, "Invalid free !\n", 15);
 #endif
+	}
 	get_free(&free);
 	get_used(&used);
 }

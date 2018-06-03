@@ -13,8 +13,7 @@ void *calloc(size_t nmemb, size_t size)
 	write(1, "CALLOC\n", 7);
 #endif
 	size_t bytes = nmemb * size;
-	void *ptr = NULL;
-	return malloc(bytes);
+	void *ptr = malloc(bytes);
 
 	if (!ptr)
 		return NULL;

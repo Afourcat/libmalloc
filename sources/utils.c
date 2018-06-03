@@ -71,6 +71,8 @@ struct data *get_free_space(struct data **head, size_t size)
 	return NULL;
 }
 
+
+
 void my_putchar(char c)
 {
 	write(1, &c, 1);
