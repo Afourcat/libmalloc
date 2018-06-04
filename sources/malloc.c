@@ -39,11 +39,10 @@ void *malloc(size_t size)
 	void *ptr = sbrk(0);
 	struct data *free = get_free(NULL);
 	struct data *used = get_used(NULL);
-	size_t size_aligned = ALIGN(size);
 
 	if (ptr == (void *) -1)
 		return NULL;
-	ptr = alloc(size_aligned, &free, &used);
+	ptr = alloc(ALIGN(size), &free, &used);
 	get_free(&free);
 	get_used(&used);
 	return ptr;

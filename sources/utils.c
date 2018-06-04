@@ -49,46 +49,22 @@ struct data *add_elem(struct data **head, struct data *elem)
 	return *head;
 }
 
-struct data *get_free_space(struct data **head, size_t size)
-{
-	struct data *tmp = *head;
-	struct data **prev = head;
-
-	while (tmp != NULL) {
-		if (tmp->size >= size) {
-#ifdef DEBUG
-			write(1, "Free space\n", 11);
-#endif
-			*prev = tmp->next;
-			return tmp;
-		}
-		prev = &tmp->next;
-		tmp = tmp->next;
-	}
-#ifdef DEBUG
-	write(1, "No free space\n", 14);
-#endif
-	return NULL;
-}
-
-
-
 void my_putchar(char c)
 {
-	write(1, &c, 1);
+       write(1, &c, 1);
 }
 
 size_t putnbr(long int nb)
 {
-	int modulo;
+       int modulo;
 
-	modulo = 0;
-	if (nb <= 9 && nb >= 0)
-		my_putchar(nb + '0');
-	if (nb > 9) {
-		modulo = nb % 10;
-		putnbr(nb / 10);
-		my_putchar(modulo + '0');
-	}
-	return 0;
+       modulo = 0;
+       if (nb <= 9 && nb >= 0)
+               my_putchar(nb + '0');
+       if (nb > 9) {
+               modulo = nb % 10;
+               putnbr(nb / 10);
+               my_putchar(modulo + '0');
+       }
+       return 0;
 }
