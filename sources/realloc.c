@@ -12,11 +12,16 @@ void *realloc(void *ptr, size_t size)
 #ifdef DEBUG
 	write(1, "REALLOC\n", 8);
 #endif
-	void *void_etoile = malloc(size);
 	struct data *info = NULL;
+	void *void_etoile = NULL;
 
-	if (!ptr)
+	if (!ptr) {
+		void_etoile = malloc(size);
 		return void_etoile;
+	}
+	if (((struct data *) ptr - 1)->size > ALIGN(size))
+		return ptr;
+	void_etoile = malloc(size);
 	if (!void_etoile)
 		return NULL;
 	info = (struct data *) ptr - 1;
