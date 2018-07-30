@@ -12,6 +12,7 @@
 #	include <stdarg.h>
 #	include <stdbool.h>
 #	include <string.h>
+#	include <pthread.h>
 
 #	define ALIGN(x) (((x) + (sizeof(void *) - 1)) & ~(sizeof(void *) - 1))
 

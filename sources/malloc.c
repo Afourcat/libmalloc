@@ -7,6 +7,8 @@
 
 #include "alloc.h"
 
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
 void *alloc(size_t size, struct data **free, struct data **used)
 {
 	struct data *new = get_free_space(free, size);
@@ -31,6 +33,7 @@ void *alloc(size_t size, struct data **free, struct data **used)
 
 void *malloc(size_t size)
 {
+	pthread_mutex_lock(&mutex);
 #ifdef DEBUG
 	write(1, "MALLOC\n", 7);
 	putnbr(ALIGN(size));
@@ -45,5 +48,6 @@ void *malloc(size_t size)
 	ptr = alloc(ALIGN(size), &free, &used);
 	get_free(&free);
 	get_used(&used);
+	pthread_mutex_unlock(&mutex);
 	return ptr;
 }

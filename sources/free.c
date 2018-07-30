@@ -7,6 +7,8 @@
 
 #include "alloc.h"
 
+extern pthread_mutex_t mutex;
+
 struct data *split_bloc(struct data *tmp, size_t size)
 {
 #ifdef DEBUG
@@ -47,6 +49,7 @@ void free(void *ptr)
 #ifdef DEBUG
 	write(1, "FREE\n", 5);
 #endif
+	pthread_mutex_lock(&mutex);
 	struct data *free = get_free(NULL);
 	struct data *used = get_used(NULL);
 	struct data **prev = &used;
@@ -82,4 +85,5 @@ void free(void *ptr)
 	}
 	get_free(&free);
 	get_used(&used);
+	pthread_mutex_unlock(&mutex);
 }
