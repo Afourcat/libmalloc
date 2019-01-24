@@ -11,7 +11,7 @@ SRC_DIR	=		sources
 
 CC	=		gcc
 
-NAME	=		libmalloc.so
+NAME	=		libmy_malloc.so
 
 REAL	=		$(ROOT)/build
 

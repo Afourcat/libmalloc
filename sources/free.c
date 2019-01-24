@@ -24,6 +24,7 @@ struct data *split_bloc(struct data *tmp, size_t size)
 	return new;
 }
 
+// TODO: Optimize
 struct data *get_free_space(struct data **head, size_t size)
 {
 	struct data *tmp = *head;
@@ -72,9 +73,6 @@ void free(void *ptr)
 			finded = true;
 			break;
 		}
-#ifdef DEBUG
-		write(1, "!\n", 2);
-#endif
 		prev = &tmp->next;
 		tmp = tmp->next;
 	}
